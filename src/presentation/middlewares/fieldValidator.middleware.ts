@@ -2,12 +2,10 @@ import { Response,Request, NextFunction } from "express";
 import {validationResult} from 'express-validator';
 
 
-export class FieldValidatorMiddleware{
+export const FieldValidatorMiddleware = {
+  fieldValidator:(req:Request,res:Response,next:NextFunction) =>{
 
-  static fieldValidator = (res:Response,req:Request,next:NextFunction) =>{
-     
     const errors = validationResult(req);
-
     if(!errors.isEmpty()){
         return res.status(400).json({
             ok:false,
@@ -16,4 +14,4 @@ export class FieldValidatorMiddleware{
       }
       next();
   }
-}
+  }

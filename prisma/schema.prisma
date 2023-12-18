@@ -11,7 +11,17 @@ datasource db {
 }
 
 
+enum Role {
+  admin
+  user
+}
+
 model user{
-  id Int @id @default(autoincrement())
-  userName String @db.VarChar()
+ id             String @id @default(uuid())
+ name           String 
+ email          String @unique
+ emailVerified  Boolean? @default(false)
+ password       String
+ role           Role    @default(user)
+ image          String?
 }

@@ -11,7 +11,10 @@
   "author": "Joel Hernandez",
   "license": "ISC",
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.5",
     "@types/node": "^20.10.3",
+    "@types/nodemailer": "^6.4.14",
     "nodemon": "^3.0.2",
     "prisma": "^5.6.0",
     "rimraf": "^5.0.5",
@@ -21,6 +24,10 @@
   "dependencies": {
     "@prisma/client": "^5.6.0",
     "@types/express": "^4.17.21",
-    "express": "^4.18.2"
+    "bcryptjs": "^2.4.3",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^6.9.7"
   }
 }
