@@ -1,6 +1,5 @@
 import express,{Router} from 'express';
 
-
 interface Options {
     port:number,
     routes: Router;

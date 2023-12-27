@@ -34,7 +34,6 @@ export class AuthRoutes{
          controller.loginUser
          );
          
-         
          router.get('/validate-email/:token',controller.validateEmail);
 
         return router;

@@ -5,7 +5,6 @@ import { JwtAdapter } from "../../config/jwt.adapter";
 import { EmailService } from "../services/email.service";
 import { sanitizeFields } from "../../helper";
 
-
 export class AuthControllers {
 
     constructor(
@@ -14,7 +13,7 @@ export class AuthControllers {
     ){}
 
     private isUserFound = async (email:string) => { 
-       const user  = await prisma.user.findFirst({
+       const user  = await prisma.user.findUnique({
         where:{email:email}
        })
        return user;
@@ -26,7 +25,7 @@ export class AuthControllers {
      const isUserRegister = await this.isUserFound(email);
 
      if(isUserRegister){
-        return res.status(400).json({message:'Error user is already registered.'});
+        return res.status(400).json({errors:{message:'Error user is already registered.'}});
      }
 
      try{
@@ -66,13 +65,12 @@ export class AuthControllers {
       const user = await this.isUserFound(email);
 
       try{
-      // TODO:Create error personalized like a closure function like logs
       if(!user){
         return res.status(400).json({message:'Error, User is not registered.'});
       }
       
       if(!bcryptAdapter.compare(password,user.password)){
-        return res.status(400).json({message:'Password does not match.'});
+        return res.status(400).json({errors:{message:'Password does not match.'}});
       }
       
       const token = await JwtAdapter.generateToken({id:user.id});
