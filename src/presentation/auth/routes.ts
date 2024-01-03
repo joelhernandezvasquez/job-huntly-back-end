@@ -34,7 +34,11 @@ export class AuthRoutes{
          controller.loginUser
          );
          
-         router.get('/validate-email/:token',controller.validateEmail);
+         router.get('/validate-email/:token',
+         [check('email','email is required').isEmail(),],
+         controller.validateEmail);
+
+         router.post('/validate-user',controller.validateUser);
 
         return router;
     }

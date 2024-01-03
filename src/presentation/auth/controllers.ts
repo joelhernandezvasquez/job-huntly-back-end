@@ -118,6 +118,29 @@ export class AuthControllers {
         return res.json('Email was validated succesfully');
     }
 
+    validateUser = async (req:Request,res:Response) =>{ 
+     
+      const {email} = req.body;
+      
+      try{
+        const isUserRegister = await this.isUserFound(email);
+
+        if(isUserRegister){
+          return res.status(200).json(true);
+        }
+        return res.status(200).json(false);
+      }
+      catch(error){
+        if(error instanceof Error) {
+         return res.status(400).json({error:error.message})
+       }
+  
+       console.log(error);
+       return res.status(500).json({error:error});
+    }
+
+    }
+
     private sendEmailValidationLink = async (email:string,res:Response) =>{
       
       const token = await JwtAdapter.generateToken({id:email});
