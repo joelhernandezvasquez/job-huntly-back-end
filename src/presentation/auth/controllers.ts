@@ -66,7 +66,7 @@ export class AuthControllers {
 
       try{
       if(!user){
-        return res.status(400).json({message:'Error, User is not registered.'});
+        return res.status(400).json({errors:{message:'Error, User is not registered.'}});
       }
       
       if(!bcryptAdapter.compare(password,user.password)){
