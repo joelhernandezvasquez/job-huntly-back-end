@@ -8,7 +8,7 @@ interface Options {
 
 export class Server{
   
-    private app = express();
+    public readonly app = express();
     private readonly port:number
     private readonly routes:Router
 
@@ -25,8 +25,8 @@ export class Server{
        //this.app.use(express.static('public'));
        this.app.use(this.routes);
 
-        this.app.listen(4000,()=>{
-            console.log(`Server running on port ${4000}`);
+        this.app.listen(this.port,()=>{
+            console.log(`Server running on port ${this.port}`);
         })
     }
 

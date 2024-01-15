@@ -119,9 +119,7 @@ export class AuthControllers {
     }
 
     validateUser = async (req:Request,res:Response) =>{ 
-     
       const {email} = req.body;
-      
       try{
         const isUserRegister = await this.isUserFound(email);
 
