@@ -115,7 +115,7 @@ export class AuthControllers {
         where:{email:email},
         data:{emailVerified:true}
       })
-        return res.json('Email was validated succesfully');
+        return res.status(200).json('Email was validated succesfully');
     }
 
     validateUser = async (req:Request,res:Response) =>{ 
