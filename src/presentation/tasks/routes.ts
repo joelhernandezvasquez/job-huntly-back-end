@@ -8,7 +8,8 @@ export class TaskRoutes{
         const router = Router();
         const controller = new TasksControllers();
        
-        router.get('/task:userId',controller.getTasks);
+        router.get('/:userId',controller.getTasks);
+        router.get('/task/:id',controller.getTask)
     
         return router;
       }
