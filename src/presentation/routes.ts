@@ -6,6 +6,7 @@ import { DashboardRoutes } from "./dashboard/routes";
 import { InterviewsRoutes } from "./interviews/routes";
 import { TaskRoutes } from "./tasks/routes";
 import { NotificationRoutes } from "./notification/routes";
+import { JobApplicationRoutes } from "./job-application/routes";
 
 export class AppRoutes{
    
@@ -18,6 +19,7 @@ export class AppRoutes{
          router.use('/api/interviews',InterviewsRoutes.routes);
          router.use('/api/tasks',TaskRoutes.routes);
          router.use('/api/notification',NotificationRoutes.routes);
+         router.use('/api/applications',JobApplicationRoutes.routes);
         return router;
     }
 }
