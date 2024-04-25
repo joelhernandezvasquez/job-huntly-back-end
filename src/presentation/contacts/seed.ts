@@ -65,7 +65,7 @@ export const contactSeedData:Contact [] = [
         role:'Hiring Manager',
         company: 'Devox.Inc',
         notes: 'last round interview with her',
-        avatar: null
+        avatar: 'jake-nackos-IF9TK5Uy-KI-unsplash.jpg'
     },
     {
         contactId:'60',
@@ -76,7 +76,7 @@ export const contactSeedData:Contact [] = [
         role:'Front-End Developer Lead',
         company: 'Sonic',
         notes: 'Lead developer, very strong questions, oriented in best practices',
-        avatar: null
+        avatar: 'vicky-hladynets-C8Ta0gwPbQg-unsplash.jpg'
     },
     {
         contactId:'70',
@@ -88,5 +88,16 @@ export const contactSeedData:Contact [] = [
         company: 'Freelancer',
         notes: 'To help me get Job tracker design app',
         avatar: null
+    },
+    {
+        contactId:'80',
+        firstName: 'Joel',
+        lastName: 'Santos',
+        email: 'joel.santos@example.com',
+        phone: '567-890-1234',
+        role:'Full Stack Developer',
+        company: 'IPG',
+        notes: 'To help me get a job interview',
+        avatar: 'joseph-gonzalez-iFgRcqHznqg-unsplash.jpg'
     }
 ]
