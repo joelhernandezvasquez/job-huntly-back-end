@@ -9,7 +9,7 @@ export class InterviewsRoutes{
         const controller = new InterviewControllers();
        
         router.get('/get-interviews/:date',controller.getInterviewsByDate);
-        router.get('/get-interview/:interviewId',controller.getInterview);
+        router.get('/get-interview/:userId/:interviewId',controller.getInterview);
     
         return router;
       }

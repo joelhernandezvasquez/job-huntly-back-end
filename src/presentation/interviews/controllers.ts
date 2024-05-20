@@ -9,17 +9,16 @@ export class InterviewControllers{
      // TODO: Need to configure to return real data
      
      const {date} = req.params;
+     console.log(date)
 
-     return res.status(200).json(interviews
-     )
+     return res.status(200).json(interviews)
     }
 
     getInterview = (req:Request,res:Response) =>{
       const {userId,interviewId} = req.params;
       
       const interview = interviews.find((interviewElement)=> interviewElement.interviewID === interviewId);
-      
-       console.log(interview);
+    
       if(!interview){
         return res.status(404).json('Inteview not found');
       }
