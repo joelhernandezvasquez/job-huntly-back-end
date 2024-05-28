@@ -10,8 +10,14 @@ export class InterviewControllers{
      
      const {date} = req.params;
      console.log(date)
+     try{
+      return res.status(200).json(interviews)
+     }
+     catch(error){
+      console.log(error)
+     }
 
-     return res.status(200).json(interviews)
+     
     }
 
     getInterview = (req:Request,res:Response) =>{
