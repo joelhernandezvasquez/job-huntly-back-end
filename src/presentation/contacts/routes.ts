@@ -11,7 +11,7 @@ export class ContactRoutes{
         const controller = new ContactController();
        
         router.get('/:userId',controller.getContacts);
-        router.get('/:userId/:contactId',controller.getContact);
+        router.get('/get/:userId/:contactId',controller.getContact);
         router.post('/create',
         [
           check('userId','user Id is required').notEmpty(),
@@ -23,6 +23,8 @@ export class ContactRoutes{
           FieldValidatorMiddleware.fieldValidator
         ],
         controller.addContact);
+        router.put('/update/:userId/:contactId',controller.updateContact);
+        router.delete('/delete/:userId/:contactId',controller.deleteContact);
         return router;
       }
 }
