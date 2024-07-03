@@ -20,7 +20,6 @@ export class AuthControllers {
     }
 
     registerUser = async (req:Request,res:Response) =>{
-
      const {name,email,password} = req.body;
      const isUserRegister = await this.isUserFound(email);
 
@@ -40,7 +39,7 @@ export class AuthControllers {
      
         const userEntity = sanitizeFields(newUser,'password');
         
-        await this.sendEmailValidationLink(userEntity.email as string,res);
+        //await this.sendEmailValidationLink(userEntity.email as string,res);
 
         const token = await JwtAdapter.generateToken({id:userEntity.id});
 
@@ -98,18 +97,18 @@ export class AuthControllers {
        const payload = await JwtAdapter.validateToken(token);
        
        if(!payload){
-        res.status(401).json('Invalid Token');
+        return res.status(401).json('Invalid Token');
        }
        const {id:email} = payload as{id:string};
   
        if(!email){
-        res.status(500).json('Email not in token');
+        return res.status(500).json('Email not in token');
        }
 
-       const user =this.isUserFound(email);
+       const user = await this.isUserFound(email);
 
        if(!user){
-        res.status(500).json('Internal Server Error');
+        return res.status(500).json('Internal Server Error');
        }
        await prisma.user.update({
         where:{email:email},
@@ -120,15 +119,18 @@ export class AuthControllers {
 
     validateUser = async (req:Request,res:Response) =>{ 
       const {email} = req.body;
+
       try{
         const isUserRegister = await this.isUserFound(email);
 
-        if(isUserRegister){
-          return res.status(200).json(true);
+        if(!isUserRegister){
+          return res.status(200).json(false);
         }
-        return res.status(200).json(false);
+        return res.status(200).json(true);
       }
       catch(error){
+        console.log('enter to the catch error');
+     
         if(error instanceof Error) {
          return res.status(400).json({error:error.message})
        }
@@ -142,9 +144,9 @@ export class AuthControllers {
     private sendEmailValidationLink = async (email:string,res:Response) =>{
       
       const token = await JwtAdapter.generateToken({id:email});
-      
+
       if(!token){
-       res.status(500).json('Internal Server Error');
+       return res.status(500).json('Internal Server Error');
       }
 
       const link = `${process.env.WEBSERVICE_URL}/auth/validate-email/${token}`;
@@ -163,8 +165,30 @@ export class AuthControllers {
       const isSent = await this.emailService.sendEmail(options);
 
       if(!isSent){
-        res.status(500).json('Error Sending Email');
+        return res.status(500).json('Error Sending Email');
       }
       return true;
+    }
+
+    getUserId = async (req:Request,res:Response,) =>{
+      const{email} = req.params;
+      try{
+       const user = await this.isUserFound(email);
+
+       if(!user){
+        return res.status(404).json({ok:false,message:'User not found'});
+       }
+       
+        return res.status(200).json({ok:true,userId:user.id});
+      }
+      catch(error){
+        if(error instanceof Error) {
+         return res.status(400).json({error:error.message})
+       }
+  
+       console.log(error);
+       return res.status(500).json({error:error});
+    }
+     
     }
 }

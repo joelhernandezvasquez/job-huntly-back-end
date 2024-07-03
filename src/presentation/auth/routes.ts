@@ -39,7 +39,7 @@ export class AuthRoutes{
          controller.validateEmail);
 
          router.post('/validate-user',controller.validateUser);
-
+         router.get('/getId/:email',controller.getUserId)
         return router;
     }
 }

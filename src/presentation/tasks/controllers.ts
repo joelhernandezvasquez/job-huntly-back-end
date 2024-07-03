@@ -27,7 +27,7 @@ export class TasksControllers{
 
     getTask = (req:Request,res:Response) =>{
         const {id} = req.params;
-        console.log(id);
+        
 
         if(!id){
             return res.status(400).json({

@@ -9,7 +9,7 @@ export class InterviewControllers{
      // TODO: Need to configure to return real data
      
      const {date} = req.params;
-     console.log(date)
+     
      try{
       return res.status(200).json(interviews)
      }

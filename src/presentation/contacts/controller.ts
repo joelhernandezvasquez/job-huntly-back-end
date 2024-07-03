@@ -1,5 +1,4 @@
 import {Request,Response} from 'express';
-import { contactSeedData } from './seed';
 import { prisma } from '../../data/postgres';
 import { Contact} from '@prisma/client';
 
@@ -20,10 +19,8 @@ export class ContactController {
     return contact;
   }
 
-
   getContacts = async(req:Request,res:Response):Promise<Contact | any>=>{
     const {userId} = req.params;
-
     try{
       const isValidUser = await this.isUserFound(userId);
 
