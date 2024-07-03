@@ -5,6 +5,10 @@ import { AuthRoutes } from "./auth/routes";
 import { DashboardRoutes } from "./dashboard/routes";
 import { InterviewsRoutes } from "./interviews/routes";
 import { TaskRoutes } from "./tasks/routes";
+import { NotificationRoutes } from "./notification/routes";
+import { JobApplicationRoutes } from "./job-application/routes";
+import { ContactRoutes } from "./contacts/routes";
+import { ResumeManagmentRoutes } from "./resume-managment/routes";
 
 export class AppRoutes{
    
@@ -16,6 +20,10 @@ export class AppRoutes{
          router.use('/api/dashboard',DashboardRoutes.routes);
          router.use('/api/interviews',InterviewsRoutes.routes);
          router.use('/api/tasks',TaskRoutes.routes);
+         router.use('/api/notification',NotificationRoutes.routes);
+         router.use('/api/applications',JobApplicationRoutes.routes);
+         router.use('/api/contacts',ContactRoutes.routes);
+         router.use('/api/resume',ResumeManagmentRoutes.routes);
         return router;
     }
 }
